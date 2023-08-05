@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtivoScrap</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{  url_for('static', filename='style.css')  }}">
+
+</head>
+
+
+<body>
+    
+
+    <div class="title">
+        <h1>Procure Seus Ativos</h1>
+        <h2>FIIs, Ações e ETFs</h2>
+    </div>
+    
+    <form action="/" method="POST" class="sc_Box">
+        <br>
+        <input name="fii_Search" type="text" placeholder="Ex.: irdm11 bova11 urpr11 wege3 (Não há a necessidade de espaços)" class="search_Bar">
+        <p class="par">Dica: Digite Vários Por Vez</p>
+        <input type="submit" name="sbmt" class="sbt_Buttom" value="Procurar">
+    </form>
+
+
+    <div class="results_Container">
+
+        {% for x in results %}
+
+            <div class="search_Result">
+
+                {% if not results %}
+                    <p>N/A</p>
+
+                {% else %}
+                
+                        
+                    <h3 class="ticker">{{x[0]}}</h3>
+                    <h4 class="cot">Cotação: R$ {{x[1]}}</h4>
+                    <h4 class="pvp">P/VP: {{x[3]}}</h4>
+                    <h4 class="cot_P">VP: R$ {{x[2]}}</h4>
+                    <h4 class="yld1">Yield 1M: {{x[4]}}</h4>
+                    <h4 class="yld12">Yield 12M: {{x[5]}}</h4>
+                    <h4 class="l_Ren">Ultimo Rendimento: {{x[6]}}</h4>
+                        
+                    
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+
+        {% for z in results_ETF %}
+
+            <div class="search_Result_ETF">
+
+                {% if not results_ETF %}
+                    <p>N/A</p>
+
+                {% else %}
+                
+                        
+                    <h3 class="ticker">{{z[0]}}</h3>
+                    <h4 class="cot">Cotação: R$ {{z[1]}}</h4>
+                    <h4 class="pvp">Min. 52 Semanas: {{z[3]}}</h4>
+                    <h4 class="cot_P">Min. Mês: R$ {{z[2]}}</h4>
+                    <h4 class="yld1">Max. 52 Semanas: R$ {{z[4]}}</h4>
+                    <h4 class="yld12">Max. Mês: R$ {{z[5]}}</h4>
+                    <h4 class="l_Ren">Valorização (1M): {{z[7]}}</h4>
+                    <h4 class="l_Ren2">Valorização (12M): {{z[6]}}</h4>
+                        
+                    
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+        {% for y in results_AC %}
+
+            <div class="search_Result_AC">
+
+                {% if not results_AC %}
+                    <p>N/A</p>
+
+                {% else %}
+                
+                        
+                    <h3 class="ticker">{{y[0]}}</h3>
+                    <h4 class="cot">Cotação: R$ {{y[1]}}</h4>
+                    <h4 class="pvp">Min. 52 Semanas: R$ {{y[3]}}</h4>
+                    <h4 class="cot_P">Min. Mês: R$ {{y[2]}}</h4>
+                    <h4 class="yld1">Max. 52 Semanas: R$ {{y[4]}}</h4>
+                    <h4 class="yld12">Max. Mês: R$ {{y[5]}}</h4>
+                    <h4 class="yld12_2">Yield 12M(%): {{y[6]}}</h4>
+                    <h4 class="yld1_2">Yield 12M: {{y[7]}}</h4>
+                    <h4 class="val_12">Valorização (12M): {{y[8]}}</h4>
+                    <h4 class="val_1">Valorização (1M): {{y[9]}}</h4>
+                    <h4 class="p_vp">P/VP: {{y[10]}}</h4>
+                        
+                    
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+        {% for n in ac_listNF %}
+
+            <div class="ac_listNF">
+
+                {% if not ac_listNF %}
+
+                {% else %}
+                
+                    <h3 class="ticker">Não Encontrado: "{{n}}"</h3>
+                    
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+</body>
+</html>
+
+
+
+
+<!-- Enviar outra lista e fazer outro for com a mesma div -->
